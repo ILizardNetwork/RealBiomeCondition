@@ -1,9 +1,11 @@
 package com.strangeone101.realbiomecondition.nms;
 
 import com.strangeone101.realbiomecondition.IBiomeReader;
+import net.minecraft.core.BlockPosition;
 import net.minecraft.core.IRegistry;
 import net.minecraft.core.IRegistryWritable;
 import net.minecraft.world.level.biome.BiomeBase;
+import net.minecraft.world.level.chunk.BiomeStorage;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_17_R1.CraftServer;
@@ -21,8 +23,16 @@ public class BiomeReader_1_17 implements IBiomeReader {
         if (world == null)
             return null;
 
-        BiomeBase biome = world.getHandle().getBiome(location.getBlockX(), location.getBlockY(), location.getBlockZ());
-        return String.valueOf(getCustomBiomeRegistry().getKey(biome));
+        BiomeStorage biomeStorage = world.getHandle().getChunkAtWorldCoords(
+            new BlockPosition(location.getBlockX(), location.getBlockY(), location.getBlockZ())
+        ).getBiomeIndex();
+
+        if (biomeStorage == null)
+            return null;
+
+        return String.valueOf(
+            getCustomBiomeRegistry().getKey(biomeStorage.getBiome(location.getBlockX(), location.getBlockY(), location.getBlockZ()))
+        );
     }
 
     @Override

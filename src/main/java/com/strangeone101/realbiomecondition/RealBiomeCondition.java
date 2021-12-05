@@ -6,6 +6,7 @@ import io.lumine.xikage.mythicmobs.skills.SkillCondition;
 import io.lumine.xikage.mythicmobs.skills.conditions.ILocationCondition;
 import io.lumine.xikage.mythicmobs.util.annotations.MythicCondition;
 import io.lumine.xikage.mythicmobs.util.annotations.MythicField;
+import org.bukkit.Location;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -36,7 +37,7 @@ public class RealBiomeCondition extends SkillCondition implements ILocationCondi
 
     @Override
     public boolean check(AbstractLocation abstractLocation) {
-        String biome = RealBiomeConditionPlugin.getPlugin().getBiomeReader().getBiomeAt(abstractLocation.toPosition().toLocation());
-        return biomes.contains(biome);
+        Location loc = abstractLocation.toPosition().toLocation();
+        return biomes.contains(RealBiomeConditionPlugin.getPlugin().getBiomeReader().getBiomeAt(loc));
     }
 }
