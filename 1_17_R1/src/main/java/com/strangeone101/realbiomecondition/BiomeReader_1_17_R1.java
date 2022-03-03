@@ -1,4 +1,4 @@
-package com.strangeone101.realbiomecondition.nms;
+package com.strangeone101.realbiomecondition;
 
 import com.strangeone101.realbiomecondition.IBiomeReader;
 import net.minecraft.core.BlockPosition;
@@ -13,7 +13,7 @@ import org.bukkit.craftbukkit.v1_17_R1.CraftWorld;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BiomeReader_1_17 implements IBiomeReader {
+public class BiomeReader_1_17_R1 implements IBiomeReader {
     private final Map<String, Integer> biomeMap = new HashMap<>();
 
     @Override
